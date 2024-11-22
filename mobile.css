@@ -1,0 +1,519 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles (Default Dark Mode) */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode Styles */
+body.light-mode {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px;
+    gap: 10px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background-color: #162447;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 10;
+    transform: translateX(-100%); /* Hide sidebar initially */
+}
+
+body.light-mode .sidebar {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* Show Sidebar */
+.sidebar.active {
+    transform: translateX(0); /* Slide sidebar in */
+}
+
+/* Close Sidebar Button */
+#closeSidebarButton {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it’s on top */
+}
+
+body.light-mode #closeSidebarButton {
+    color: #333;
+}
+
+/* Menu */
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 50px; /* Add space above the menu items */
+    width: 100%;
+}
+
+.menu li {
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: #1f4068;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+}
+
+body.light-mode .menu li {
+    background-color: #ddd;
+    color: #333;
+}
+
+
+/* Menu Button */
+.menu-button {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff00; /* Button color */
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    z-index: 1000;
+    cursor: pointer;
+    font-size:28px;
+    color:white;
+    padding-bottom: 1.75px;
+}
+
+.menu-button:focus {
+    outline: none;
+}
+
+.menu-button .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #fff; /* Bar color */
+    transition: all 0.3s;
+}
+
+.menu-button.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-button.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-button.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+body.light-mode .menu-button{
+    background-color: #ffffff00;
+    color: #333;
+}
+/* Menu Styles */
+.menu-icon {
+    display: none;
+}
+
+.menu {
+    list-style-type: none;
+    width: 100%;
+}
+
+.menu li {
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: #1f4068;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+}
+
+body.light-mode .menu li {
+    background-color: #ddd;
+    color: #333;
+}
+.menu li:hover {
+    background-color: #e43f5a;
+    color: #fff;
+}
+
+/* Dark Mode/Light Mode Button */
+.toggle-dark-mode {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #1f4068;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Dark Mode/Light Mode Button */
+body.light-mode .toggle-dark-mode {
+    background-color: #ddd;
+    color: #333;
+}
+
+/* New ChatBot Button */
+body.light-mode #openChatInNewTab, 
+body.light-mode #refreshPage {
+    background-color: #ddd;
+    color: #333;
+}
+
+#openChatInNewTab:hover,
+#refreshPage:hover {
+    background-color: #e43f5a;
+    color: #fff;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #0f3460;
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Ensure the main content can be overlapped */
+    padding-top: 70px; /* Make space for the fixed sidebar */
+}
+
+body.light-mode .main-content {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Top Section */
+.top-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Center align items vertically */
+    justify-content: flex-start; /* Align items to the left */
+    background-color: #1f4068;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.light-mode .top-section {
+    background-color: #ddd;
+}
+
+.top-picture {
+    margin-right: 15px; /* Add space between the image and the text */
+}
+
+.top-text {
+    padding-top: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left; /* Align text to the left */
+    color: #e0e0e0; /* Ensure text color is set */
+}
+
+body.light-mode .top-text {
+    color: #333;
+}
+
+.circular-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.circular-image:hover {
+    transform: scale(1.2);
+}
+
+
+/* Chat Section */
+.chat-box {
+    height: auto;
+    display: flex;
+    background-color: #4f6d90;
+    color: #fff;
+    border-radius: 11px;
+    border: 1px solid #162447;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    align-items: center;
+    margin-top: auto;
+}
+
+body.light-mode .chat-box {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #0f3460;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+
+body.light-mode .chat-input {
+    background-color: #fff;
+    color: #333;
+    border-right: 1px solid #ccc;
+}
+
+.send-button,
+.voice-button,
+#readAloudButton {
+    background-color: #0f3460;
+    color: #fff;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+    margin-left: 5px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+body.light-mode .send-button,
+body.light-mode .voice-button,
+body.light-mode #readAloudButton {
+    background-color: #8f8f8f74;
+    color: #fff;
+}
+
+.send-button:hover,
+.voice-button:hover,
+#readAloudButton:hover {
+    transform: scale(1.02);
+}
+
+/* Chat Messages */
+#chatMessages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.user-message,
+.bot-message {
+    padding: 10px;
+    border-radius: 8px;
+    margin: 8px 0;
+}
+
+.user-message {
+    background-color: #e43f5a;
+    color: #fff;
+    align-self: flex-end;
+}
+
+body.light-mode .user-message {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.bot-message {
+    background-color: #1f4068;
+    color: #e0e0e0;
+    align-self: flex-start;
+}
+
+body.light-mode .bot-message {
+    background-color: #ddd;
+    color: #333;
+}
+
+/* Style for links within bot messages */
+.bot-message a {
+    color: #e43f5a;
+    text-decoration: none;
+}
+
+.bot-message a:hover {
+    text-decoration: underline;
+}
+
+/* Read Aloud Button */
+#readAloudButton {
+    background-color: #0f3460;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+body.light-mode #readAloudButton {
+    background-color: #8f8f8f74;
+    color: #fff;
+}
+
+#readAloudButton:hover {
+    transform: scale(1.05);
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .sidebar {
+        position: fixed;
+        width: 100%;
+        max-width: none;
+        transform: translateX(-100%);
+        padding: 20px;
+        height: 100%;
+        z-index: 1000; /* Ensure sidebar is on top */
+        top: 0;
+        left: 0;
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        padding-top: 10px; /* No extra space for fixed sidebar */
+    }
+
+    .top-section {
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .top-text {
+        font-size: 16px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .circular-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .chat-box {
+        flex-direction: row; /* Ensure buttons are next to the input */
+        align-items: center;
+        padding: 10px;
+    }
+
+    .chat-input {
+        width: calc(100% - 10px * 3 - 8px * 3 - 36px * 3); /* Adjust width to fit all buttons next to it */
+        margin-bottom: 0; /* Remove bottom margin */
+    }
+
+    .send-button,
+    .voice-button,
+    #readAloudButton {
+        width: 36px; /* Adjust width to fit next to the input */
+        margin-left: 8px; /* Ensure spacing between buttons */
+    }
+
+    body.light-mode .chat-box {
+        background-color: #f0f0f0;
+        color: #333;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Additional Media Query for Very Small Screens */
+@media (max-width: 768px) {
+    .sidebar {
+        padding-top: 25px;
+        padding: 15px;
+    }
+
+    .menu li {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .top-section {
+        padding: 5px;
+    }
+
+    .chat-box {
+        padding: 5px;
+    }
+
+    .chat-input {
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .send-button,
+    .voice-button,
+    #readAloudButton {
+        padding: 5px;
+        font-size: 12px;
+    }
+}
