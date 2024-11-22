@@ -216,7 +216,7 @@ body.light-mode .chat-box {
     border-radius: 8px;
     outline: none;
     border-right: 0.5px solid #162447;
-    margin-right: 10px; /* Added margin */
+    margin-right: 1px; /* Added margin */
 }
 
 body.light-mode .chat-input {
